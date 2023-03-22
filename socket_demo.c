@@ -11,7 +11,6 @@
 #include <stdbool.h>
 #include <libgen.h>
 #include <errno.h>
-
 static bool stop = false;
 
 // 触发时结束主循环

@@ -15,7 +15,10 @@
         "string.h": "c",
         "libc-header-start.h": "c",
         "bitset": "c",
-        "errno.h": "c"
+        "errno.h": "c",
+        "fcntl.h": "c",
+        "unistd.h": "c",
+        "fcntl-linux.h": "c"
     },
     "C_Cpp.codeAnalysis.clangTidy.checks.disabled": [
         "clang-analyzer-security.insecureAPI.DeprecatedOrUnsafeBufferHandling"

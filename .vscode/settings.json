@@ -1,0 +1,26 @@
+{
+    "files.associations": {
+        "*.json": "jsonc",
+        "in.h": "c",
+        "socket.h": "c",
+        "functional": "c",
+        "istream": "c",
+        "ostream": "c",
+        "utility": "c",
+        "*.def": "c",
+        "inet.h": "c",
+        "features.h": "c",
+        "stdint-uintn.h": "c",
+        "types.h": "c",
+        "string.h": "c",
+        "libc-header-start.h": "c",
+        "bitset": "c",
+        "errno.h": "c",
+        "fcntl.h": "c",
+        "unistd.h": "c",
+        "fcntl-linux.h": "c"
+    },
+    "C_Cpp.codeAnalysis.clangTidy.checks.disabled": [
+        "clang-analyzer-security.insecureAPI.DeprecatedOrUnsafeBufferHandling"
+    ]
+}

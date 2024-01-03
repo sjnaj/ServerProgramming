@@ -11,7 +11,7 @@ int main(int argc, char *argv[])
 {
     assert(argc == 2);
     char *const host = argv[1];
-    struct hostent *hostinfo = gethostbyname(host);
+    struct hostent *hostinfo = gethostbyname(host);//etc:localhost
     assert(hostinfo);
 
     struct servent *servinfo = getservbyname("daytime", "tcp");

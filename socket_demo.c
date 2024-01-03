@@ -57,7 +57,6 @@ int main(int argc, char *argv[])
     // 实际可容纳backlog+1个连接
     ret = listen(sock, backlog);
     assert(ret != -1);
-
     printf("Successful initialization\n");
 
     sleep(20);

@@ -6,6 +6,8 @@
             "command": "/bin/gcc",
             "args": [
                 "-fdiagnostics-color=always",
+                "-fno-omit-frame-pointer",
+                "-fsanitize=address",
                 "-std=c11",
                 "-g",
                 "${file}",

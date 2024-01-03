@@ -1,0 +1,109 @@
+https://www.kernel.org/doc/html/latest/networking/ip-sysctl.html ：/proc/sys/net/ipv4/* 文件介绍
+
+man x的含义
+1 - commands
+2 - system calls
+3 - library calls
+4 - special files
+5 - file formats and convertions
+6 - games for linux
+7 - macro packages and conventions
+8 - system management commands
+9 - 其他
+
+/etc/service :知名服务端口
+
+arp -a
+sudo arp -s xxx xxxx
+sudo arp -d xxx
+sudo tcpdump -i eth0 -ent '(dst 172.31.80.1 and src 172.31.85.129)or(dst 172.31.85.129 and src 172.31.80.1)'
+
+
+DNS: /etc/resolv.conf
+sudo tcpdump -i eth0 -nt -s 500 port domain
+host -t A www.baidu.com 
+
+ip 分片
+sudo tcpdump  -ntv -i eth0 icmp
+ping  172.31.85.129 -s 1473
+ping 172.31.85.129 -l 1473(win)
+
+
+sudo route add -host xxxx dev eth0
+sudo route add default gw xxx dev eth0 //默认网关
+
+/proc/sys/net/ipv4/ip_forward：转发数据报功能开关，默认关闭
+
+
+TCP:
+/proc/sys/net/ipv4/tcp_window_scaling :通告窗口扩大因子 2^M
+/proc/sys/net/ipv4/tcp_sack:选择确认
+/proc/sys/net/ipv4/tcp_syn_retries:重连次数
+
+孤儿连接（强行退出FIN_WAIT_2)的数量和生存时间
+/proc/sys/net/ipv4/tcp_max_orphans 
+/proc/sys/net/ipv4/tcp_fin_timeout 
+
+TIME_WAIT: 2MSL(Maximum Segment Life) 通过SO_REUSEADDR强制占用
+原因：1，可靠中止，2，保证迟来的报文段被丢弃防止被化身接收
+
+TCP交互数据：telnet
+成块数据：ftp
+
+带外数据：SO_OOBINLINE
+
+TCP超时时，底层ip和ARP接管之前的最少最多重传次数
+/proc/sys/net/ipv4/tcp_retries1
+/proc/sys/net/ipv4/tcp_retries2
+
+拥塞控制算法：/proc/sys/net/ipv4/tcp_congestion_control  cubic
+
+
+service(/usr/sbin/service) /etc/init.d/xxx
+
+/etc/hosts
+/etc/host.conf
+
+man 3 basename
+
+/proc/sys/net/ipv4/tcp_max_syn_backlog: listen的半连接数量上限
+
+netstat -nt | grep 12345 //-n:numeric t:tcp
+
+accept从监听队列中取出连接，不论连接处于何种状态
+
+close引用减一，shutdown立即关闭
+
+SOL_SOCKET：通用socket选项
+
+pipe:进程间单向读写，socketpair:双向，domain为AF_UNIX
+
+dup,dup2重定向
+
+readv,writev：读或写到分散的空间
+
+sendfile：描述符之间传递数据
+
+mmap,munmap:进程共享内存
+
+splice：描述符之间移动数据
+
+tea：描述符之间复制数据
+
+守护进程即后台进行，父进程pid为1
+运行权限，euid，启动权限，uid
+chmod +s 设置set-user-id标志改变启动权限为启动用户
+
+ps -o pid,ppid,pgid,sid,comm | less
+
+setrlimit 设置系统资源限制
+
+chdir:改变工作目录
+chroot:改变根目录
+
+
+阻塞I/O：程序阻塞于读写函数
+I/O复用：程序阻塞于I/O复用系统调用，但可同时监听多个I/O事件。对I/O本身的读写操作是非阻塞的。
+SIGIO信号:信号触发读写就绪事件，用户程序执行读写操作。程序没有阻塞阶段。
+异步I/O：内核执行读写操作并触发读写完成事件。
+
